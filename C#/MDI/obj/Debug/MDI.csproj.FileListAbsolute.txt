@@ -1,0 +1,54 @@
+D:\Школа\Технологии программирования\КП\MDI\MDI\bin\Debug\MDI.exe.config
+D:\Школа\Технологии программирования\КП\MDI\MDI\bin\Debug\MDI.exe
+D:\Школа\Технологии программирования\КП\MDI\MDI\bin\Debug\MDI.pdb
+D:\Школа\Технологии программирования\КП\MDI\MDI\obj\Debug\MDI.csprojAssemblyReference.cache
+D:\Школа\Технологии программирования\КП\MDI\MDI\obj\Debug\MDI.MDIParent1.resources
+D:\Школа\Технологии программирования\КП\MDI\MDI\obj\Debug\MDI.Properties.Resources.resources
+D:\Школа\Технологии программирования\КП\MDI\MDI\obj\Debug\MDI.csproj.GenerateResource.cache
+D:\Школа\Технологии программирования\КП\MDI\MDI\obj\Debug\MDI.csproj.CoreCompileInputs.cache
+D:\Школа\Технологии программирования\КП\MDI\MDI\obj\Debug\MDI.exe
+D:\Школа\Технологии программирования\КП\MDI\MDI\obj\Debug\MDI.pdb
+D:\Школа\Технологии программирования\КП\MDI\MDI\obj\Debug\MDI.Form1.resources
+D:\Школа\Технологии программирования\КП\MDI\MDI\bin\Debug\MDI.exe.manifest
+D:\Школа\Технологии программирования\КП\MDI\MDI\bin\Debug\MDI.application
+D:\Школа\Технологии программирования\КП\MDI\MDI\obj\Debug\MDI.exe.manifest
+D:\Школа\Технологии программирования\КП\MDI\MDI\obj\Debug\MDI.application
+D:\Школа\Архив\Технологии программирования\КП\MDI\MDI\bin\Debug\MDI.exe.config
+D:\Школа\Архив\Технологии программирования\КП\MDI\MDI\bin\Debug\MDI.exe.manifest
+D:\Школа\Архив\Технологии программирования\КП\MDI\MDI\bin\Debug\MDI.application
+D:\Школа\Архив\Технологии программирования\КП\MDI\MDI\bin\Debug\MDI.exe
+D:\Школа\Архив\Технологии программирования\КП\MDI\MDI\bin\Debug\MDI.pdb
+D:\Школа\Архив\Технологии программирования\КП\MDI\MDI\obj\Debug\MDI.csprojAssemblyReference.cache
+D:\Школа\Архив\Технологии программирования\КП\MDI\MDI\obj\Debug\MDI.Form1.resources
+D:\Школа\Архив\Технологии программирования\КП\MDI\MDI\obj\Debug\MDI.MDIParent1.resources
+D:\Школа\Архив\Технологии программирования\КП\MDI\MDI\obj\Debug\MDI.Properties.Resources.resources
+D:\Школа\Архив\Технологии программирования\КП\MDI\MDI\obj\Debug\MDI.csproj.GenerateResource.cache
+D:\Школа\Архив\Технологии программирования\КП\MDI\MDI\obj\Debug\MDI.csproj.CoreCompileInputs.cache
+D:\Школа\Архив\Технологии программирования\КП\MDI\MDI\obj\Debug\MDI.exe.manifest
+D:\Школа\Архив\Технологии программирования\КП\MDI\MDI\obj\Debug\MDI.application
+D:\Школа\Архив\Технологии программирования\КП\MDI\MDI\obj\Debug\MDI.exe
+D:\Школа\Архив\Технологии программирования\КП\MDI\MDI\obj\Debug\MDI.pdb
+D:\Школа\Бакалавриат\Технологии программирования - C#\КП\MDI\MDI\obj\Debug\MDI.csproj.AssemblyReference.cache
+D:\Школа\Бакалавриат\Технологии программирования - C#\КП\MDI\MDI\obj\Debug\MDI.Form1.resources
+D:\Школа\Бакалавриат\Технологии программирования - C#\КП\MDI\MDI\obj\Debug\MDI.MDIParent1.resources
+D:\Школа\Бакалавриат\Технологии программирования - C#\КП\MDI\MDI\obj\Debug\MDI.Properties.Resources.resources
+D:\Школа\Бакалавриат\Технологии программирования - C#\КП\MDI\MDI\obj\Debug\MDI.csproj.GenerateResource.cache
+D:\Школа\Бакалавриат\Технологии программирования - C#\КП\MDI\MDI\obj\Debug\MDI.csproj.CoreCompileInputs.cache
+D:\Школа\Бакалавриат\Технологии программирования - C#\КП\MDI\MDI\obj\Debug\MDI.exe
+D:\Школа\Бакалавриат\Технологии программирования - C#\КП\MDI\MDI\obj\Debug\MDI.pdb
+D:\Школа\Бакалавриат\Технологии программирования - C#\КП\MDI\MDI\obj\Debug\MDI.csprojAssemblyReference.cache
+D:\Школа\Бакалавриат\Технологии программирования - C#\КП\C#\MDI\obj\Debug\MDI.csproj.AssemblyReference.cache
+D:\Школа\Бакалавриат\Технологии программирования - C#\КП\C#\MDI\obj\Debug\MDI.Form1.resources
+D:\Школа\Бакалавриат\Технологии программирования - C#\КП\C#\MDI\obj\Debug\MDI.MDIParent1.resources
+D:\Школа\Бакалавриат\Технологии программирования - C#\КП\C#\MDI\obj\Debug\MDI.Properties.Resources.resources
+D:\Школа\Бакалавриат\Технологии программирования - C#\КП\C#\MDI\obj\Debug\MDI.csproj.GenerateResource.cache
+D:\Школа\Бакалавриат\Технологии программирования - C#\КП\C#\MDI\obj\Debug\MDI.csproj.CoreCompileInputs.cache
+D:\Школа\Бакалавриат\Технологии программирования - C#\КП\C#\MDI\obj\Debug\MDI.exe
+D:\Школа\Бакалавриат\Технологии программирования - C#\КП\C#\MDI\obj\Debug\MDI.pdb
+D:\Школа\Бакалавриат\Технологии программирования - C#\КП\C#\MDI\bin\Debug\MDI.exe.config
+D:\Школа\Бакалавриат\Технологии программирования - C#\КП\C#\MDI\bin\Debug\MDI.exe.manifest
+D:\Школа\Бакалавриат\Технологии программирования - C#\КП\C#\MDI\bin\Debug\MDI.application
+D:\Школа\Бакалавриат\Технологии программирования - C#\КП\C#\MDI\bin\Debug\MDI.exe
+D:\Школа\Бакалавриат\Технологии программирования - C#\КП\C#\MDI\bin\Debug\MDI.pdb
+D:\Школа\Бакалавриат\Технологии программирования - C#\КП\C#\MDI\obj\Debug\MDI.exe.manifest
+D:\Школа\Бакалавриат\Технологии программирования - C#\КП\C#\MDI\obj\Debug\MDI.application
