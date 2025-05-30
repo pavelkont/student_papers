@@ -20,5 +20,5 @@
 
 ## 👤 Автор
 
-Pavel Kontorin 
+Pavel Kontorin  
 2025
