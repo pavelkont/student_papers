@@ -1,0 +1,67 @@
+﻿@page "{id:int}"
+@model VKR_Kontorin.Pages.ContactCustModel
+@{
+    ViewData["Title"] = "ContactCust";
+}
+
+<h1 style="text-align: center; margin-bottom:0.5em;" class="bg-warning text-white">Отправка контактных данных</h1>
+
+@if (@Model.Tech?.Cust == null)
+{
+    <form method="post">
+        <input name="id" value="@Model.Tech?.Id" type="hidden" />
+        <input name="tipe_id" value="@Model.Tech?.Tipe_id" type="hidden" />
+        <input name="brand_id" value="@Model.Tech?.Brand_id" type="hidden" />
+        <input name="mark_id" value="@Model.Tech?.Mark_id" type="hidden" />
+        <input name="owner_id" value="@Model.Tech?.Owner_id" type="hidden" />
+        <input name="city_id" value="@Model.Tech?.City_id" type="hidden" />
+        <input name="distr" value="@Model.Tech?.Distr" type="hidden" />
+        <input name="price" value="@Model.Tech?.Price" type="hidden" />
+        <input name="free" value=false type="hidden" />
+        <p style="text-align: center">
+            <label>Введите номер Вашего телефона в формате 9159999999</label>
+            <br />
+            <input name="cust" value="@User.Identity?.Name" pattern="[0-9]{10}" required />
+        </p>
+        <input name="time" value="@DateTime.Now.ToString("dd.MM.yy HH:mm")" type="hidden" />
+        <div style="display:flex; justify-content:center; align-items:center; height:30vh;">
+            <input type="submit" class="btn btn-warning" value="Ок" />
+        </div>
+    </form>
+}
+else
+{
+    <form method="post">
+        <p style="text-align: center">
+            <label>Выбранная Вами техника будет поставлена в резерв и снята с публикации.<br />
+                Номер Вашего телефона будет отправлен арендодателю.
+            </label>
+        </p>
+        <div style="display:flex; justify-content:center; align-items:center; height:30vh;">
+            <button class="btn btn-warning" >
+                <a asp-page="ContactOwner" style="text-decoration: none; color: black;"
+                   asp-route-id="@Model.Tech?.Id">Ок</a>
+            </button>
+        </div>
+    </form>
+}
+@* {
+    <h2 style="text-align: center;">Контактные данные арендодателя</h2>
+    @Model.Owners[Model.Tech.Owner_id - 1].Tlf
+    <form method="post">
+        <input name="id" value="@Model.Tech?.Id" type="hidden" />
+        <input name="tipe_id" value="@Model.Tech?.Tipe_id" type="hidden" />
+        <input name="brand_id" value="@Model.Tech?.Brand_id" type="hidden" />
+        <input name="mark_id" value="@Model.Tech?.Mark_id" type="hidden" />
+        <input name="owner_id" value="@Model.Tech?.Owner_id" type="hidden" />
+        <input name="city_id" value="@Model.Tech?.City_id" type="hidden" />
+        <input name="distr" value="@Model.Tech?.Distr" type="hidden" />
+        <input name="price" value="@Model.Tech?.Price" type="hidden" />
+        <input name="free" value="false" type="hidden" />
+        <input name="cust" value="@Model.Tech?.Cust" type="hidden" />
+        <input name="time" value="@DateTime.Now.ToString()" type="hidden" />
+
+        <input type="submit" value="Ок" />
+    </form>
+} *@
+

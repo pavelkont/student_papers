@@ -1,0 +1,118 @@
+﻿@page
+@model VKR_Kontorin.Pages.AddTechModel
+@{
+    ViewData["Title"] = "AddTech";
+}
+<h1 style="text-align: center; margin-bottom:0.5em" class="bg-secondary text-white">Добавление техники</h1>
+
+<form method="post">
+    @{
+        foreach (var owner in Model.Owners)
+        if (owner.Tlf == @User.Identity?.Name)
+            Model.id = owner.Id;
+    }
+    <input name="owner_id" value=@Model.id type="hidden" />
+    <p>
+        <label>Тип</label><br />
+        <select name="tipe_id">
+            <option value=1>экскаватор-погрузчик</option>
+            <option value=2>колесный экскаватор</option>
+            <option value=3>гусеничный экскаватор</option>
+            <option value=4>самосвал</option>
+            <option value=5>манипулятор</option>
+            <option value=6>автокран</option>
+        </select>
+    </p>
+    <p>
+        <label>Производитель</label><br />
+        <select name="brand_id">
+            <option value=1>Case</option>
+            <option value=2>Howo</option>
+            <option value=3>Ивановец</option>
+            <option value=4>Jcb</option>
+            <option value=5>Komatsu</option>
+            <option value=6>Маз</option>
+            <option value=7>Tadano</option>
+            <option value=8>Unic</option>
+            <option value=9>Xcmg</option>
+        </select>
+    </p>
+    <p>
+        <label>Марка</label><br />
+        <select name="mark_id">
+            <option value=1>3CX</option>
+            <option value=2>4CX</option>
+            <option value=3>WB93</option>
+            <option value=4>WB97</option>
+            <option value=5>XC8</option>
+            <option value=6>XT8</option>
+            <option value=7>570X</option>
+            <option value=8>580V</option>
+            <option value=9>JS160W</option>
+            <option value=10>JS200W</option>
+            <option value=11>PW160</option>
+            <option value=12>PW200</option>
+            <option value=13>WX160</option>
+            <option value=14>WX200</option>
+            <option value=15>JS200</option>
+            <option value=16>JS240</option>
+            <option value=17>PC200</option>
+            <option value=18>PC240</option>
+            <option value=19>XE215</option>
+            <option value=20>XE260</option>
+            <option value=21>CX210</option>
+            <option value=22>CX240</option>
+            <option value=23>65012</option>
+            <option value=24>65142</option>
+            <option value=25>HW</option>
+            <option value=26>TX</option>
+            <option value=27>SZ</option>
+            <option value=28>ZR</option>
+            <option value=29>UR245</option>
+            <option value=30>UR334</option>
+            <option value=31>GR800</option>
+            <option value=32>GR1100</option>
+            <option value=33>КС35</option>
+            <option value=34>КС55</option>
+            <option value=35>XCT25</option>
+            <option value=36>XCT30</option>
+        </select>
+    </p>
+    <p>
+        <label>Город</label><br />
+        <select name="city_id">
+            <option value=1>Ярославль</option>
+            <option value=2>Ростов</option>
+            <option value=3>Переславль-Залесский</option>
+            <option value=4>Тутаев</option>
+            <option value=5>Рыбинск</option>
+            <option value=6>Гаврилов-Ям</option>
+        </select>
+    </p>
+    <p>
+        <label>Район</label><br />
+        <select name="distr">
+            <option value=Ленинский>Ленинский</option>
+            <option value=Фрунзенский>Фрунзенский</option>
+            <option value=Красноперекопский>Красноперекопский</option>
+            <option value=Дзержинский>Дзержинский</option>
+            <option value=Заволжский>Заволжский</option>
+            <option value="">Нет</option>
+        </select>
+    </p> 
+    <p>
+        <label>Цена</label><br />
+        <input name="price" value=2500 />
+    </p>
+    <p>
+        <label>Свободен</label><br />
+        <select name="free">
+            <option value="true">да</option>
+            <option value="false">нет</option>
+        </select>
+    </p>
+    <input type="submit" style="margin-bottom:1em" class="btn btn-success" value="Сохранить" />
+</form>
+<a asp-page="/ViewTech" class="btn btn-secondary">Моя техника</a>
+
+

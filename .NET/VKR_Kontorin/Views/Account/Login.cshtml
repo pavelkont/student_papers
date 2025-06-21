@@ -1,0 +1,25 @@
+﻿@model Login
+@{
+    ViewData["Title"] = "Login";
+}
+
+<h1 style="text-align:center; margin-bottom:0.5em" class="bg-success text-white">Вход</h1>
+<a asp-page="/Index" class="btn btn-secondary">Назад</a>
+<div class="text-danger" asp-validation-summary="All"></div>
+
+<form asp-action="Login" method="post">
+    <input type="hidden" asp-for="ReturnUrl" />
+    <div class="form-group">
+        <label asp-for="Email"></label>
+        <input asp-for="Email" class="form-control" @* value="333196@mail.ru" *@ required />
+    </div>
+    <div class="form-group">
+        <label>Пароль</label>
+        <input type="password" asp-for="Password" class="form-control" @* value="Qqq!11" *@  required />
+    </div>
+    <div class="form-group" style="margin-bottom:1em">
+        Запомнить меня? <input type="checkbox" asp-for="Remember" />
+    </div>
+    <button class="btn btn-success" type="submit" style="margin-right:1em;">Войти</button>
+    <a asp-controller="Account" asp-action="ForgotPassword" class="btn btn-warning">Забыли пароль</a>
+</form>

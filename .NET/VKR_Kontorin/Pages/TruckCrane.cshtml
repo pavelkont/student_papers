@@ -1,0 +1,42 @@
+﻿@page
+@model VKR_Kontorin.Pages.TruckCraneModel
+@{
+    ViewData["Title"] = "TruckCrane";
+}
+
+<h1 style="text-align: center; margin-bottom: 0.5em;" class="bg-warning text-white">Автокраны</h1>
+
+<table class="table table-sm table-bordered">
+    <tr>
+        <th>Тип</th>
+        <th>Бренд</th>
+        <th>Марка</th>
+        <th>Город</th>
+        <th>Район</th>
+        <th>Цена</th>
+        <th></th>
+    </tr>
+    @foreach (var tech in Model.Techs)
+        if ((tech.Free == true) && (tech.Tipe_id == 6))
+        {
+            <tr>
+                <td>@Model.Tipes[tech.Tipe_id - 1].Name</td>
+                <td>@Model.Brands[tech.Brand_id - 1].Name</td>
+                <td>@Model.Marks[tech.Mark_id - 1].Name</td>
+                <td>@Model.Cities[tech.City_id - 1].Name</td>
+                <td>@tech.Distr</td>
+                <td>@tech.Price</td>
+                <td style="text-align: center">
+                    <form method="post">
+                        <button class="btn btn-secondary">
+                            <a asp-page="ContactCust" style="text-decoration: none; color: white;"
+                               asp-route-id="@tech.Id">Показать номер телефона</a>
+                        </button>
+                    </form>
+                </td>
+            </tr>
+        }
+</table>
+<form action="/Index">
+    <button class="btn btn-warning">К списку техники</button>
+</form>

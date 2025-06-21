@@ -1,0 +1,134 @@
+﻿@page
+@model VKR_Kontorin.Pages.ViewTechOwnerModel
+@{
+    ViewData["Title"] = "ViewTechOwnerModel";
+}
+<h1 style="text-align: center; margin-bottom: 0.5em;", class="bg-primary text-white">Список техники по владельцам</h1>
+@{
+    var viewTech = from tech in Model.Techs
+                   join tipe in Model.Tipes
+                   on tech.Tipe_id equals tipe.Id
+                   join brand in Model.Brands
+                   on tech.Brand_id equals brand.Id
+                   join mark in Model.Marks
+                   on tech.Mark_id equals mark.Id
+                   join owner in Model.Owners
+                   on tech.Owner_id equals owner.Id
+                   join city in Model.Cities
+                   on tech.City_id equals city.Id
+                   orderby tech.Mark_id
+                   orderby tech.Brand_id
+                   orderby tech.Tipe_id
+                   select new
+                   {
+                       id = tech.Id,
+                       tipe = tipe.Name,
+                       brand = brand.Name,
+                       mark = mark.Name,
+                       city = city.Name,
+                       owner = owner.Tlf,
+                       distr = tech.Distr,
+                       price = tech.Price,
+                       free = tech.Free,
+                       cust = tech.Cust,
+                       time = tech.Time,
+                       block = tech.Block
+                   };
+}
+
+@foreach (var owner in Model.Owners)
+{
+    <h3 style="text-align: center; margin-bottom: 0.5em;" class="bg-primary p-1 text-white">@owner.Tlf</h3>
+    <table class="table table-sm table-bordered">
+        <tr>
+            <th>Тип</th>
+            <th>Производитель</th>
+            <th>Марка</th>
+            <th>Город</th>
+            <th>Район</th>
+            <th>Цена</th>
+            <th>Заказчик</th>
+            <th>Резерв</th>
+            <th colspan="4"></th>
+        </tr>
+        @foreach (var vt in viewTech)
+        {
+                if (owner.Tlf == vt.owner)
+                {
+
+                <tr>
+                    <td>@vt.tipe</td>
+                    <td>@vt.brand</td>
+                    <td>@vt.mark</td>
+                    <td>@vt.city</td>
+                    <td>@vt.distr</td>
+                    <td>@vt.price</td>
+                    <td>@vt.cust</td>
+                    <td>@vt.time</td>
+                    <td style="text-align: center">
+                        <form method="post">
+                            <button class="btn btn-outline-secondary">
+                                <a asp-page="EditTech" style="text-decoration: none; color: black;"
+                                   asp-route-id="@vt.id" asp-route-url="ViewTechOwner">Изменить</a>
+                            </button>
+                        </form>
+                    </td>
+                    <td style="text-align: center">
+                        <form method="post">
+                            <button class="btn btn-danger" type="submit" asp-page-handler="delete" asp-route-id="@vt.id">
+                                Удалить
+                            </button>
+                        </form>
+                    </td>
+                    <td style="text-align: center">
+                        @{
+                            if (@vt.free == true)
+                            {
+                                <form method="post">
+                                    <button class="btn btn-success">
+                                        <a asp-page="EditFree" style="text-decoration: none; color: white;" asp-route-url="ViewTechOwner"
+                                           asp-route-id="@vt.id">Свободен</a>
+                                    </button>
+                                </form>
+                            }
+                            else
+                            {
+                                <form method="post">
+                                    <button class="btn btn-warning">
+                                        <a asp-page="EditFree" style="text-decoration: none; color: white;" asp-route-url="ViewTechOwner"
+                                           asp-route-id="@vt.id">Занят</a>
+                                    </button>
+                                </form>
+                            }
+                        }
+                    </td>
+                    <td style="text-align: center">
+                        @{
+                            if (@vt.block == true)
+                            {
+                                <form method="post">
+                                    <button class="btn btn-danger">
+                                        <a asp-page="EditBlock" style="text-decoration: none; color: white;" asp-route-url="ViewTechOwner"
+                                           asp-route-id="@vt.id">Блок</a>
+                                    </button>
+                                </form>
+                            }
+                            else
+                            {
+                                <form method="post">
+                                    <button class="btn btn-success">
+                                        <a asp-page="EditBlock" style="text-decoration: none; color: white;" asp-route-url="ViewTechOwner"
+                                           asp-route-id="@vt.id">Разблок</a>
+                                    </button>
+                                </form>
+                            }
+                        }
+                    </td>
+                </tr>
+            }
+        }
+    </table>
+}
+<form action="/IndexAuthorize">
+    <button class="btn btn-primary">На главную</button>
+</form>

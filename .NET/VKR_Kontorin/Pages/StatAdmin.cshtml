@@ -1,0 +1,122 @@
+﻿@page "{id:int}"
+@model VKR_Kontorin.Pages.StatAdminModel
+
+@{
+    ViewData["Title"] = "StatAdmin";
+}
+
+@{
+    @*var unit = from row in Model.Stats
+               where row.Tech_id == @Model.Tech.Id
+               orderby row.Id
+               select new
+               {
+                   //Date = row.Date,
+                   //Qty = row.Qty
+               };*@
+//int tipeId = 1;
+    var averUnits = from row in Model.Stats
+                    where row.Tipe_id == @Model.Tipe.Id
+                    orderby row.Id
+                    group row by row.Date into rows
+                    select new
+                    {
+                        Date = rows.Key,
+                        AverageQty = Math.Round(rows.Average(row => row.Qty)),                        
+                    };
+}
+
+@{
+    @*string labelTop = @Model.Tipes[Model.Tech.Tipe_id - 1].Name + " " + @Model.Brands[Model.Tech.Brand_id - 1].Name + 
+    " " + @Model.Marks[Model.Tech.Mark_id - 1].Name;*@
+}
+<div class="text-center">
+    <h1 style="text-align: center; margin-bottom: 0.5em;" class="bg-primary text-white">Статистика использования техники</h1>
+    <h3 style="text-align: center; margin-bottom: 0.5em;" class="bg-primary p-1 text-white">@Model.Tipe.Name</h3>
+
+    <div class="card" style="margin:1em 0">
+        <div class="chart-container">
+            <canvas id="line-chart" width="100" height="400"></canvas>
+        </div>     
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js@3.9.1/dist/chart.min.js"></script>
+<script>
+    //var Qty = [];
+    var Average = [];
+    var Dates = [];
+
+    @foreach (var stat in averUnits)
+    {
+        @:Average.push(@stat.AverageQty);
+        @:Dates.push('@stat.Date');
+    }
+    @*var Unit = 
+    {
+        type: 'bar',
+        label: "Единица техники",
+        data: Qty,
+        backgroundColor: ['#ffc107'],
+        borderColor: ['#ffc107'],
+        borderWidth: 5,
+        lineTension: 5,
+    };*@
+    var Units = 
+    {
+        type: 'line',
+        cubicInterpolationMode: 'monotone',
+        pointStyle: 'none',
+        pointRadius: 0,
+        pointHoverRadius: 0,
+        label: "В среднем по типу техники",
+        data: Average,
+        backgroundColor: ['#6c757d'],
+        borderColor: ['#6c757d'],
+        borderWidth: 5,
+        lineTension: 0,
+        //fill: true,
+    };
+    var datasetvalues = 
+    {
+        labels: Dates, // ось x
+        datasets: [Units] // ось y
+    };
+    barChartOptions = 
+    {
+        indexAxis: 'x',
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: {
+            title: {
+                display: true,
+                text: 'Отработано смен в месяц'}
+        },
+        scales: {
+            x: {
+                barPercentage: 1,
+                categoryPercentage: 0.6,},
+            y: {
+                barPercentage: 1,
+                categoryPercentage: 0.6,
+                ticks: {
+                    beginAtZero: true}}
+        }
+    }
+    var verticalBarChart = new Chart(
+        document.getElementById('line-chart').getContext('2d'), {
+        type: 'line',
+        data: datasetvalues,
+        options: barChartOptions
+    });
+</script>
+@foreach (var tipe in Model.Tipes)
+{
+    <a asp-page="/StatAdmin" class="btn btn-warning" style="margin:0 1em 1em 0" asp-route-id="@tipe.Id">
+        @tipe.Name
+    </a>
+}
+
+<div>
+    <a asp-page="/IndexAuthorize" class="btn btn-primary">Назад</a>
+</div>

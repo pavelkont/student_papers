@@ -1,0 +1,37 @@
+﻿@* @using Microsoft.AspNetCore.Identity
+@inject SignInManager<IdentityUser> SignInManager
+@inject UserManager<IdentityUser> UserManager *@
+
+<ul class="navbar-nav">
+@if (@User.Identity?.Name! != null)
+{
+    <li class="nav-item">
+        @if (@User.Identity?.Name == "0000000000")
+        {
+            <a class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage" style="margin-right:5em;">
+                Здравствуйте, администратор!
+            </a>
+        }
+        else
+        {
+            <a class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage" style="margin-right:5em;">
+                Здравствуйте, @User.Identity?.Name!
+            </a>
+        }        
+    </li>
+    <li class="nav-item">
+        <form class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Page("/Index", new { area = "" })">
+            <a asp-controller="Account" asp-action="Logout" class="btn btn-success">Выход</a>
+        </form>
+    </li>
+}
+else
+{
+    <li class="nav-item">
+            <a asp-controller="Admin" asp-action="Create" class="btn btn-success" style="margin-right:1em;">Регистрация</a>
+    </li>
+    <li class="nav-item">
+            <a asp-page="/IndexAuthorize" class="btn btn-success">Вход</a>
+    </li>
+}
+</ul>

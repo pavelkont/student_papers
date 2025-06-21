@@ -1,0 +1,52 @@
+﻿@page "{id:int}"
+@model VKR_Kontorin.Pages.EditBlockModel
+@{
+    ViewData["Title"] = "EditBlock";
+}
+
+<h1 style="text-align: center; margin-bottom:0.5em" class="bg-primary text-white">Изменение статуса техники</h1>
+
+<p style="text-align: center">
+    Измените статус техники.
+</p>
+
+<form method="post">
+    <input name="id" value="@Model.Tech?.Id" type="hidden" />
+    <input name="tipe_id" value="@Model.Tech?.Tipe_id" type="hidden" />
+    <input name="brand_id" value="@Model.Tech?.Brand_id" type="hidden" />
+    <input name="mark_id" value="@Model.Tech?.Mark_id" type="hidden" />
+    <input name="owner_id" value="@Model.Tech?.Owner_id" type="hidden" />
+    <input name="city_id" value="@Model.Tech?.City_id" type="hidden" />
+    <input name="distr" value="@Model.Tech?.Distr" type="hidden" />
+    <input name="price" value="@Model.Tech?.Price" type="hidden" />
+    @{
+        if (@Model.Tech.Free)
+    {
+        <input name="free" value=true type="hidden" />
+    }
+    }
+    @{
+        if (@Model.Tech.Block)
+        {
+            <input name="block" value="false" type="hidden" />
+        }
+        else
+        {
+            <input name="block" value="true" type="hidden" />
+        }
+    }
+    <input name="time" value="" type="hidden" />
+    <div style="display:flex; justify-content:center; align-items:center; height:30vh;">
+
+        @{
+        if (@Model.Tech.Block)
+        {
+            <input class="btn btn-success text-white" type="submit" value="Разблокирован" />
+        }
+        else
+        {
+            <input class="btn btn-danger" type="submit" value="Заблокирован" />
+        }
+    }
+    </div>
+</form>

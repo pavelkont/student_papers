@@ -1,0 +1,109 @@
+﻿@page "{id:int}"
+@model VKR_Kontorin.Pages.EditTechModel
+@{
+    ViewData["Title"] = "EditTech";
+}
+<h1 style="text-align: center" , class="bg-secondary text-white">
+        Редактирование техники:</br>@Model.Tipes[Model.Tech.Tipe_id - 1].Name @Model.Brands[Model.Tech.Brand_id - 1].Name @Model.Marks[Model.Tech.Mark_id - 1].Name
+    </h1>
+
+@* @{string str = "dfg";}
+@{System.Globalization.TextInfo.ToTitleCase(@str)} *@
+<form method="post">
+    <input name="id" value="@Model.Tech?.Id" type="hidden" />
+    <input name="owner_id" value=@Model.Tech?.Owner_id type="hidden" />
+    <p>
+        <input name="tipe_id" value=@Model.Tech.Tipe_id type="hidden" />
+        <input name="brand_id" value=@Model.Tech.Brand_id type="hidden" />
+        <input name="mark_id" value=@Model.Tech.Mark_id type="hidden" />
+    </P>
+@*     <p>
+        <label>Тип</label><br />
+        <label>@Model.Tipes[Model.Tech.Tipe_id - 1].Name</label><br />
+        <select name="tipe_id">
+            <option value=@Model.Tech.Tipe_id>@Model.Tipes[Model.Tech.Tipe_id - 1].Name</option>
+            <option value=1>экскаватор-погрузчик</option>
+            <option value=2>колесный экскаватор</option>
+            <option value=3>гусеничный экскаватор</option>
+            <option value=4>самосвал</option>
+            <option value=5>манипулятор</option>
+            <option value=6>автокран</option>
+        </select>
+    </p>
+    <p>
+        <label>Бренд</label><br />
+        <label>@Model.Brands[Model.Tech.Brand_id - 1].Name</label><br />
+        <select name="brand_id">
+            <option value=@Model.Tech.Brand_id>@Model.Brands[Model.Tech.Brand_id - 1].Name</option>
+            <option value=1>Case</option>
+            <option value=2>Howo</option>
+            <option value=3>Ивановец</option>
+            <option value=4>Jcb</option>
+            <option value=5>Komatsu</option>
+            <option value=6>Маз</option>
+            <option value=7>Tadano</option>
+            <option value=8>Unics</option>
+            <option value=9>Xcmg</option>
+        </select>
+    </p>
+    <p>
+        <label>Марка</label><br />
+        <label>@Model.Marks[Model.Tech.Mark_id - 1].Name</label><br />
+        <select name="mark_id">
+            <option value=@Model.Tech.Mark_id>@Model.Marks[Model.Tech.Mark_id - 1].Name</option>
+            <option value=1>3CX</option>
+            <option value=2>4CX</option>
+            <option value=3>200</option>
+            <option value=4>230</option>
+        </select>
+    </p> *@
+    <p>
+        <label>Город</label><br />
+        <select name="city_id">
+            <option value=@Model.Tech.City_id>@Model.Cities[Model.Tech.City_id - 1].Name</option>
+            <option value=1>Ярославль</option>
+            <option value=2>Ростов</option>
+            <option value=3>Переславль-Залесский</option>
+            <option value=4>Тутаев</option>
+            <option value=5>Рыбинск</option>
+            <option value=6>Гаврилов-Ям</option>
+        </select>
+    </p>
+    <p>
+        <label>Район</label><br />
+        @*         <input name="distr" value="@Model.Tech?.distr" />
+ *@     <select name="distr">
+            <option value=@Model.Tech?.Distr>@Model.Tech?.Distr</option>
+            <option value=Ленинский>Ленинский</option>
+            <option value=Фрунзенский>Фрунзенский</option>
+            <option value=Красноперекопский>Красноперекопский</option>
+            <option value=Дзержинский>Дзержинский</option>
+            <option value=Заволжский>Заволжский</option>
+            <option value="">Нет</option>
+        </select>
+    </p>
+    <p>
+        <label>Цена</label><br />
+        <input name="price" value="@Model.Tech?.Price" />
+    </p>
+    <p>
+        <label>Свободен</label><br />
+        <select name="free" value="@Model.Tech?.Free">
+            @if (@Model.Tech?.Free == true)
+            {
+                <option value=@Model.Tech?.Free>да</option>}
+            else
+            {
+                <option value=@Model.Tech?.Free>нет</option>            }
+            <option value="true">да</option>
+            <option value="false">нет</option>
+        </select>
+    </p>
+    <input name="time" value="" type="hidden" />
+    <input type="submit" class="btn btn-success" style="margin-bottom:1em" value="Сохранить" />
+</form>
+<div>
+    <button class="btn btn-secondary">
+        <a href='javascript: history.length > 1 ? history.go(-1): null' style="text-decoration: none; color: white;">Назад</a>
+    </button>
+</div>

@@ -1,0 +1,131 @@
+﻿@page
+@model VKR_Kontorin.Pages.IndexAuthorizeModel
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1 style="text-align: center; margin-bottom: 0.5em;" class="bg-secondary text-white">
+    Информационная система «Диспетчер»</br>
+    предложение и поиск строительной техники
+</h1>
+
+@{
+    bool owner = true;
+}
+@foreach (var appuser in Model.AppUsers)
+    if (appuser.UserName == User.Identity?.Name && appuser.PhoneNumberConfirmed == false)
+    {
+        owner = false;
+    }
+
+@* User *@
+
+@if (User.Identity?.Name == null || owner == false)
+{
+    @*     <div style="display: flex; justify-content: center;">
+        <div>@Model.Techs.Count(i => i.Tipe_id == 1 && i.Free == true && i.Block == false)</div>
+        <div style="margin-right: 25em; margin-left: 25em;">
+            @Model.Techs.Count(i => i.Tipe_id == 1 && i.Free == true && i.Block == false)
+        </div>
+        <div>@Model.Techs.Count(i => i.Tipe_id == 1 && i.Free == true && i.Block == false)</div>
+    </div> *@
+    <div class="flex-container">
+        <div class="flex-item"><a asp-page="/BackhoeLoader"><img src="images/bhl.jpg" width="400" height="400"></a></div>
+        <div class="flex-item"><a asp-page="/WheeledExcavator"><img src="images/we.jpg" width="400" height="400"></a></div>
+        <div class="flex-item"><a asp-page="/CrawlerExcavator"><img src="images/ce.jpg" width="400" height="400"></a></div>
+    </div>
+
+    <div class="flex-container">
+        <div class="flex-item"><a asp-page="/DumpTruck"><img src="images/dt.jpg" width="400" height="400"></a></div>
+        <div class="flex-item"><a asp-page="/Manipulator"><img src="images/m.jpg" width="400" height="400"></a></div>
+        <div class="flex-item"><a asp-page="/TruckCrane"><img src="images/tc.jpg" width="400" height="400"></a></div>
+    </div>
+}
+
+@* Admin *@
+
+else if (@User.Identity?.Name == "0000000000")
+{
+    <div style="margin-bottom: 1em;">
+        <a asp-page="/ViewTechCity" class="btn btn-primary" style="margin-right:1em;">Техника по городам</a>
+        <a asp-page="/ViewTechOwner" class="btn btn-primary" style="margin-right:1em;">Техника по владельцам</a>
+        <a asp-page="/ViewTechTipe" class="btn btn-primary" style="margin-right:1em;">Техника по типам</a>
+    </div>
+    <div style ="margin-bottom: 1em;">
+        <a asp-controller="Admin" asp-action="Index" class="btn btn-success" style="margin-right:1em;">Пользователи</a>
+        <a asp-controller="Role" asp-action="Index" class="btn btn-success" style="margin-right:1em;">Роли</a>
+    </div>
+    <a asp-page="/StatAdmin" class="btn btn-warning" style="margin-bottom: 1em;" asp-route-id=1>Статистика</a>
+
+    @if (Model.Messages.Count != 0)
+    {
+        <table class="table table-sm table-bordered">
+            <tr>
+                <th>Дата</th>
+                <th>Арендодатель</th>
+                <th>Сообщение</th>
+                <th></th>
+            </tr>
+            @{
+                foreach (var message in Model.Messages)
+                {
+                    <tr>
+                        <td>@message.Date</td>
+                        <td>@message.Tlf</td>
+                        <td>@message.Content</td>
+                        <td style="text-align: center">
+                            <form method="post">
+                                <button class="btn btn-danger" type="submit" asp-page-handler="delete" asp-route-id="@message.Id">
+                                    Удалить
+                                </button>
+                            </form>
+                        </td>
+                    </tr>
+                }
+            }
+        </table>
+    <div>
+
+    </div>
+    }
+}
+
+@* Owner *@
+
+else
+{
+    <div style="margin-bottom:1em">
+        <a asp-page="/AddTech" class="btn btn-secondary" style="margin-right:10px;">Добавить технику</a>
+        <a asp-page="/ViewTech" class="btn btn-secondary" style="margin-right:10px;">Моя техника</a>
+        @{
+            int idOwner = 1;
+            var idOwnerList = from owners in Model.Owners
+                              where owners.Tlf == User.Identity?.Name
+                              select owners.Id;
+            foreach (var _idOwner in idOwnerList)
+                idOwner = _idOwner;
+
+            int id = 1;
+            var idList = from tech in Model.Techs
+                         where tech.Owner_id == idOwner
+                         select tech.Id;
+            foreach (var _id in idList)
+                id = _id;
+        }
+        <a asp-page="/Stat" class="btn btn-warning" asp-route-id=@id>Статистика</a>
+    </div>
+    <form method="post">
+        <label>Сообщение администратору:</label>
+        <input name="Date" value="@DateTime.Now.ToString("dd.MM.yy HH:mm")" type="hidden" />
+        <input name="Tlf" value=@User.Identity?.Name type="hidden" />
+        <p>
+            <input name="Content" style="width: 1295px; height: 25px;" />
+        </p>
+        <input type="submit" class="btn btn-success" value="Отправить" />
+    </form>
+    <form asp-controller="Admin" asp-action="Delete" method="post" style="margin-top:1em">
+        <button type="submit" class="btn btn-sm btn-danger" style="height:35px; font-size:1em">
+            Удалить аккаунт
+        </button>
+    </form>
+}

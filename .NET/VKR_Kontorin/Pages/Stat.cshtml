@@ -1,0 +1,157 @@
+﻿@page "{id:int}"
+@model VKR_Kontorin.Pages.StatModel
+
+@{
+    ViewData["Title"] = "Stat";
+}
+
+@{
+    var unit = from row in Model.Stats
+               where row.Tech_id == @Model.Tech.Id
+               orderby row.Id
+               select new
+               {
+                   Date = row.Date,
+                   Qty = row.Qty
+               };
+
+    var averUnits = from row in Model.Stats
+                    where row.Tipe_id == @Model.Tech.Tipe_id
+                    orderby row.Id
+                    group row by row.Date into rows
+                    select new
+                    {
+                        Date = rows.Key,
+                        AverageQty = Math.Round(rows.Average(row => row.Qty)),                        
+                    };
+}
+
+@{
+    string labelTop = @Model.Tipes[Model.Tech.Tipe_id - 1].Name + " " + @Model.Brands[Model.Tech.Brand_id - 1].Name + 
+    " " + @Model.Marks[Model.Tech.Mark_id - 1].Name;
+}
+<div class="text-center">
+    <h1 style="text-align: center; margin-bottom: 0.5em;" class="bg-secondary text-white">Статистика использования техники</h1>
+    <h3 style="text-align: center; margin-bottom: 0.5em;" class="bg-secondary p-1 text-white">@labelTop</h3>
+    <div class="card" style="margin:1em 0">
+        <div class="chart-container">
+            <canvas id="bar-chart" width="100" height="400"></canvas>
+        </div>     
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js@3.9.1/dist/chart.min.js"></script>
+<script>
+    var Qty = [];
+    var Average = [];
+    var Dates = [];
+    @foreach (var stat in unit)
+    {
+        @:Qty.push(@stat.Qty);
+        @:Dates.push('@stat.Date');
+    }
+    @foreach (var stat in averUnits)
+    {
+        @:Average.push(@stat.AverageQty);
+    }
+    var Unit = 
+    {
+        type: 'bar',
+        label: "Единица техники",
+        data: Qty,
+        backgroundColor: ['#ffc107'],
+        borderColor: ['#ffc107'],
+        borderWidth: 5,
+        lineTension: 5,
+    };
+    var Units = 
+    {
+        type: 'line',
+        cubicInterpolationMode: 'monotone',
+        pointStyle: 'none',
+        pointRadius: 0,
+        pointHoverRadius: 0,
+        label: "В среднем по типу техники",
+        data: Average,
+        backgroundColor: ['#6c757d'],
+        borderColor: ['#6c757d'],
+        borderWidth: 5,
+        lineTension: 0,
+    };
+    var datasetvalues = 
+    {
+        labels: Dates, // ось x
+        datasets: [Units, Unit] // ось y
+    };
+    barChartOptions = 
+    {
+        indexAxis: 'x',
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: {
+            title: {
+                display: true,
+                text: 'Отработано смен в месяц'}
+        },
+        scales: {
+            x: {
+                barPercentage: 1,
+                categoryPercentage: 0.6,},
+            y: {
+                barPercentage: 1,
+                categoryPercentage: 0.6,
+                ticks: {
+                    beginAtZero: true}}
+        }
+    }
+    var verticalBarChart = new Chart(
+        document.getElementById('bar-chart').getContext('2d'), {
+        type: 'bar',
+        data: datasetvalues,
+        options: barChartOptions
+    });
+</script>
+@{
+    var statTech = from tech in Model.Techs
+                   join tipe in Model.Tipes
+                   on tech.Tipe_id equals tipe.Id
+                   join brand in Model.Brands
+                   on tech.Brand_id equals brand.Id
+                   join mark in Model.Marks
+                   on tech.Mark_id equals mark.Id
+                   orderby tech.Mark_id
+                   orderby tech.Brand_id
+                   orderby tech.Tipe_id
+                   select new
+                   {
+                       id = tech.Id,
+                       tipe = tipe.Name,
+                       brand = brand.Name,
+                       mark = mark.Name,
+                       owner = tech.Owner_id
+                   };
+}
+@if (@User.Identity?.Name == "0000000000")
+{
+    @foreach (var tech in statTech)
+    {
+        <a asp-page="/Stat" class="btn btn-warning" style="margin:0 1em 1em 0" asp-route-id="@tech.id">
+            @tech.tipe @tech.brand @tech.mark
+        </a>
+    }
+}
+else
+{
+    @foreach (var tech in statTech)
+    {
+        if (tech.owner == @Model.Tech.Owner_id)
+        {
+            <a asp-page="/Stat" class="btn btn-warning" style="margin:0 1em 1em 0" asp-route-id="@tech.id">
+                @tech.tipe @tech.brand @tech.mark
+            </a>
+        }
+    }
+}
+<div>
+    <a asp-page="/IndexAuthorize" class="btn btn-secondary" >Назад</a>
+</div>
