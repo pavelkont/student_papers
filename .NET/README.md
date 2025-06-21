@@ -2,15 +2,15 @@
 
 ## Предварительные требования
 
-- .NET SDK (версия 6.0 или выше)
-- PostgreSQL (локально или удалённо)
-- (Опционально) Visual Studio 2022 или другой IDE для .NET
+✔ .NET SDK (версия 6.0 или выше)  
+✔ PostgreSQL (локально или удалённо)  
+✔ (Опционально) Visual Studio 2022 или другой IDE для .NET  
 
 ## Настройка подключения к базе данных
 
-1. Откройте файл `appsettings.json`.
+✔ Откройте файл `appsettings.json`.
 
-2. Замените строку подключения в разделе `ConnectionStrings:DefaultConnection` на свои данные:
+✔ Замените строку подключения в разделе `ConnectionStrings:DefaultConnection` на свои данные:
 
 ```json
 "ConnectionStrings": {
