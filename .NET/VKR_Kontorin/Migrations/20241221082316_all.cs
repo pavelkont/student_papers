@@ -150,7 +150,8 @@ namespace VKR_Kontorin.Migrations
                     Price = table.Column<int>(type: "integer", nullable: false),
                     Free = table.Column<bool>(type: "boolean", nullable: false),
                     Cust = table.Column<string>(type: "text", nullable: true),
-                    Time = table.Column<string>(type: "text", nullable: true)
+                    Time = table.Column<string>(type: "text", nullable: true),
+                    Block = table.Column<bool>(type: "boolean", nullable: false),
                 },
                 constraints: table =>
                 {
