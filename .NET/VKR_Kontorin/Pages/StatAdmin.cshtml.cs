@@ -19,7 +19,6 @@ namespace VKR_Kontorin.Pages
         public List<Tipe> Tipes { get; private set; } = new();
         public List<Brand> Brands { get; private set; } = new();
         public List<Mark> Marks { get; private set; } = new();
-        //public Tech? Tech { get; set; }
         public Tipe? Tipe { get; set; }
 
         public async Task<IActionResult> OnGetAsync(int id)
@@ -29,7 +28,6 @@ namespace VKR_Kontorin.Pages
             Tipes = context.Tipes.AsNoTracking().ToList();
             Brands = context.Brands.AsNoTracking().ToList();
             Marks = context.Marks.AsNoTracking().ToList();
-            //Tech = await context.Techs.FindAsync(id);
             Tipe = await context.Tipes.FindAsync(id);
 
             if (Tipe == null) return NotFound();

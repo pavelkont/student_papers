@@ -1,6 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using Microsoft.EntityFrameworkCore;
 using VKR_Kontorin.Models;
 
 namespace VKR_Kontorin.Pages
@@ -16,7 +15,6 @@ namespace VKR_Kontorin.Pages
         {
             context = db;
         }
-
         public async Task<IActionResult> OnGetAsync(int id)
         {
             Tech = await context.Techs.FindAsync(id);
@@ -28,9 +26,6 @@ namespace VKR_Kontorin.Pages
             context.Techs.Update(Tech!);
             await context.SaveChangesAsync();
             return RedirectToPage(url);
-
-            //return RedirectToPage("ViewTech");
-            //return Page();
         }
     }
 }

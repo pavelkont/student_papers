@@ -11,7 +11,6 @@ namespace VKR_Kontorin.Controllers
         {
             userManager = usrMgr;
         }
-
         public async Task<IActionResult> ConfirmEmail(string token, string email)
         {
             var user = await userManager.FindByEmailAsync(email);

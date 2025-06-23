@@ -15,7 +15,6 @@ namespace VKR_Kontorin.Pages
         {
             context = db;
         }
-        //public List<Tech> Techs { get; private set; } = new();
         public List<Tipe> Tipes { get; private set; } = new();
         public List<Brand> Brands { get; private set; } = new();
         public List<Mark> Marks { get; private set; } = new();
@@ -31,14 +30,7 @@ namespace VKR_Kontorin.Pages
             AppUsers = context.AppUsers.AsNoTracking().ToList();
             Tech = await context.Techs.FindAsync(id);
             if (Tech == null) return NotFound();
-            //return RedirectToPage("/Index");
             return Page();
         }
-/*        public async Task<IActionResult> OnPostAsync()
-        {
-            context.Techs.Update(Tech!);
-            await context.SaveChangesAsync();
-            return RedirectToPage("Index");
-        }*/
     }
 }

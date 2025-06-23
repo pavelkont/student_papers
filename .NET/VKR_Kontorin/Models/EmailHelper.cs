@@ -57,7 +57,6 @@ namespace VKR_Kontorin.Models
                 Console.WriteLine($"Ошибка отправки email: {ex.Message}");
                 return false;
             }
-            //return false;
         }
     }
 }

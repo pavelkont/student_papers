@@ -21,13 +21,6 @@
 @* User *@
 @if (User.Identity?.Name == null || owner == false)
 {
-    @*     <div style="display: flex; justify-content: center;">
-        <div>@Model.Techs.Count(i => i.Tipe_id == 1 && i.Free == true && i.Block == false)</div>
-        <div style="margin-right: 25em; margin-left: 25em;">
-            @Model.Techs.Count(i => i.Tipe_id == 1 && i.Free == true && i.Block == false)
-        </div>
-        <div>@Model.Techs.Count(i => i.Tipe_id == 1 && i.Free == true && i.Block == false)</div>
-    </div> *@
     <div class="flex-container">
         <div class="flex-item"><a asp-page="/BackhoeLoader"><img src="images/bhl.jpg" width="400" height="400"></a></div>
         <div class="flex-item"><a asp-page="/WheeledExcavator"><img src="images/we.jpg" width="400" height="400"></a></div>

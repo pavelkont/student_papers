@@ -1,8 +1,5 @@
-﻿using CsvHelper.Configuration;
-using CsvHelper;
-using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
-using System.Globalization;
 
 namespace VKR_Kontorin.Models
 {

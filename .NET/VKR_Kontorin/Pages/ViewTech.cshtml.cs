@@ -3,8 +3,6 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using VKR_Kontorin.Models;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.Data.SqlClient;
-using Microsoft.AspNetCore.Identity;
 
 namespace VKR_Kontorin.Pages
 {
@@ -24,7 +22,6 @@ namespace VKR_Kontorin.Pages
         public List<City> Cities { get; private set; } = new();
         public List<Stat> Stats { get; private set; } = new();
         public List<Message> Messages { get; private set; } = new();
-
         public void OnGet()
         {
             Techs = context.Techs.AsNoTracking().ToList();

@@ -1,7 +1,4 @@
-﻿using Microsoft.AspNetCore.Identity;
-using VKR_Kontorin.Models;
-
-namespace VKR_Kontorin.Models
+﻿namespace VKR_Kontorin.Models
 {
     public class RoleEdit
     {

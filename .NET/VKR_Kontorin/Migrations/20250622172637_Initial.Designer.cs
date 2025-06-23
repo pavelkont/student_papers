@@ -12,8 +12,8 @@ using VKR_Kontorin.Models;
 namespace VKR_Kontorin.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20250621142712_Sync")]
-    partial class Sync
+    [Migration("20250622172637_Initial")]
+    partial class Initial
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

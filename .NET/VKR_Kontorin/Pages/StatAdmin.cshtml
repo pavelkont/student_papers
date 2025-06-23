@@ -6,15 +6,6 @@
 }
 
 @{
-    @*var unit = from row in Model.Stats
-               where row.Tech_id == @Model.Tech.Id
-               orderby row.Id
-               select new
-               {
-                   //Date = row.Date,
-                   //Qty = row.Qty
-               };*@
-//int tipeId = 1;
     var averUnits = from row in Model.Stats
                     where row.Tipe_id == @Model.Tipe.Id
                     orderby row.Id
@@ -26,10 +17,6 @@
                     };
 }
 
-@{
-    @*string labelTop = @Model.Tipes[Model.Tech.Tipe_id - 1].Name + " " + @Model.Brands[Model.Tech.Brand_id - 1].Name + 
-    " " + @Model.Marks[Model.Tech.Mark_id - 1].Name;*@
-}
 <div class="text-center">
     <h1 style="text-align: center; margin-bottom: 0.5em;" class="bg-primary text-white">Статистика использования техники</h1>
     <h3 style="text-align: center; margin-bottom: 0.5em;" class="bg-primary p-1 text-white">@Model.Tipe.Name</h3>
@@ -43,7 +30,6 @@
 
 <script src="https://cdn.jsdelivr.net/npm/chart.js@3.9.1/dist/chart.min.js"></script>
 <script>
-    //var Qty = [];
     var Average = [];
     var Dates = [];
 
@@ -52,16 +38,6 @@
         @:Average.push(@stat.AverageQty);
         @:Dates.push('@stat.Date');
     }
-    @*var Unit = 
-    {
-        type: 'bar',
-        label: "Единица техники",
-        data: Qty,
-        backgroundColor: ['#ffc107'],
-        borderColor: ['#ffc107'],
-        borderWidth: 5,
-        lineTension: 5,
-    };*@
     var Units = 
     {
         type: 'line',
@@ -75,7 +51,6 @@
         borderColor: ['#6c757d'],
         borderWidth: 5,
         lineTension: 0,
-        //fill: true,
     };
     var datasetvalues = 
     {

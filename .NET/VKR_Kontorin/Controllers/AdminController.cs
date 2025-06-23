@@ -3,7 +3,6 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using VKR_Kontorin.Models;
-using static Org.BouncyCastle.Asn1.Cmp.Challenge;
 
 namespace VKR_Kontorin.Controllers
 {
@@ -21,15 +20,6 @@ namespace VKR_Kontorin.Controllers
         public List<Tech> Techs { get; private set; } = new();
         public List<Owner> Owners { get; private set; } = new();
         public List<AppUser> AppUsers { get; private set; } = new();
-
-/*        public void OnGet()
-        {
-            Owners = context.Owners.AsNoTracking().ToList();
-            Techs = context.Techs.AsNoTracking().ToList();
-            AppUsers = context.AppUsers.AsNoTracking().ToList();
-        }*/
-
-
 
         // Create:
         public ViewResult Create() => View();
@@ -142,7 +132,6 @@ namespace VKR_Kontorin.Controllers
             foreach (var o in Owners)
                 if (o.Tlf == tlfOwner)
                 { idOwner = o.Id; }
-            //Console.WriteLine("*****" + "id = " + id + "; tlfOwner = " + tlfOwner + "; idOwner = " + idOwner);
             foreach (var t in Techs)
                 if (t.Owner_id == idOwner)
                 {
@@ -150,7 +139,6 @@ namespace VKR_Kontorin.Controllers
                     context.Techs.Remove(tech);
                     await context.SaveChangesAsync();
                 }
-            //Console.WriteLine("*****" + "id = " + id + "; tlfOwner = " + tlfOwner + "; idOwner = " + idOwner);
             if (idOwner != 0)
             {
                 var owner = await context.Owners.FindAsync(idOwner);
@@ -169,8 +157,6 @@ namespace VKR_Kontorin.Controllers
             }
             else
                 ModelState.AddModelError("", "Пользователь не существует.");
-
-
 
             return View("Index", userManager.Users);            
         }

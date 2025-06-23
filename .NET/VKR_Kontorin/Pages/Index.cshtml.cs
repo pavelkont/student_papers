@@ -2,18 +2,13 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using VKR_Kontorin.Models;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.AspNetCore.Authorization;
-
 
 namespace VKR_Kontorin.Pages
 {
-    //[Authorize]
     public class IndexModel : PageModel
     {
         private readonly ILogger<IndexModel> _logger;
-
         ApplicationDbContext context;
-
         public IndexModel(ILogger<IndexModel> logger, ApplicationDbContext db)
         {
             _logger = logger;
@@ -21,11 +16,8 @@ namespace VKR_Kontorin.Pages
         }
         public List<Tech> Techs { get; private set; } = new();
         public List<Owner> Owners { get; private set; } = new();
-
         public List<AppUser> AppUsers { get; private set; } = new();
         public List<Message> Messages { get; private set; } = new();
-
-
         public void OnGet()
         {
             Techs = context.Techs.AsNoTracking().ToList();
@@ -35,7 +27,6 @@ namespace VKR_Kontorin.Pages
         }
         [BindProperty]
         public Message Message { get; set; } = new();
-
         public async Task<IActionResult> OnPostAsync()
         {
             context.Messages.Add(Message);

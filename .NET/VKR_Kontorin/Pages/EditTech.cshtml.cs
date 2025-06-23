@@ -1,7 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
-using System;
 using VKR_Kontorin.Models;
 
 namespace VKR_Kontorin.Pages
@@ -17,19 +16,16 @@ namespace VKR_Kontorin.Pages
         {
             context = db;
         }
-
         public List<Tipe> Tipes { get; private set; } = new();
         public List<Brand> Brands { get; private set; } = new();
         public List<Mark> Marks{ get; private set; } = new();
         public List<City> Cities { get; private set; } = new();
-
         public async Task<IActionResult> OnGetAsync(int id)
         {
             Tipes = context.Tipes.AsNoTracking().ToList();
             Brands = context.Brands.AsNoTracking().ToList();
             Marks = context.Marks.AsNoTracking().ToList();
             Cities = context.Cities.AsNoTracking().ToList();
-
             Tech = await context.Techs.FindAsync(id);
             if (Tech == null) return NotFound();
             return Page();
@@ -39,7 +35,6 @@ namespace VKR_Kontorin.Pages
             context.Techs.Update(Tech!);
             await context.SaveChangesAsync();
             return RedirectToPage(url);
-            //return RedirectToPage("ViewTech");
         }
     }
 }

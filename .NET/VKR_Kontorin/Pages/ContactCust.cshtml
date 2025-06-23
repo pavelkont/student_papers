@@ -45,23 +45,3 @@ else
         </div>
     </form>
 }
-@* {
-    <h2 style="text-align: center;">Контактные данные арендодателя</h2>
-    @Model.Owners[Model.Tech.Owner_id - 1].Tlf
-    <form method="post">
-        <input name="id" value="@Model.Tech?.Id" type="hidden" />
-        <input name="tipe_id" value="@Model.Tech?.Tipe_id" type="hidden" />
-        <input name="brand_id" value="@Model.Tech?.Brand_id" type="hidden" />
-        <input name="mark_id" value="@Model.Tech?.Mark_id" type="hidden" />
-        <input name="owner_id" value="@Model.Tech?.Owner_id" type="hidden" />
-        <input name="city_id" value="@Model.Tech?.City_id" type="hidden" />
-        <input name="distr" value="@Model.Tech?.Distr" type="hidden" />
-        <input name="price" value="@Model.Tech?.Price" type="hidden" />
-        <input name="free" value="false" type="hidden" />
-        <input name="cust" value="@Model.Tech?.Cust" type="hidden" />
-        <input name="time" value="@DateTime.Now.ToString()" type="hidden" />
-
-        <input type="submit" value="Ок" />
-    </form>
-} *@
-

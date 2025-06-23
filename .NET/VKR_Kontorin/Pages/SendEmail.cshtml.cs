@@ -8,6 +8,5 @@ namespace VKR_Kontorin.Pages
         public void OnGet()
         {
         }
-
     }
 }

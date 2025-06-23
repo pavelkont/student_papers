@@ -17,7 +17,6 @@ namespace VKR_Kontorin.Pages
         public List<Mark> Marks { get; private set; } = new();
         public List<Owner> Owners { get; private set; } = new();
         public List<City> Cities { get; private set; } = new();
-
         public void OnGet()
         {
             Techs = context.Techs.AsNoTracking().ToList();

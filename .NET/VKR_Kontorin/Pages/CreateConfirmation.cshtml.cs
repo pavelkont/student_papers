@@ -23,13 +23,10 @@ namespace VKR_Kontorin.Pages
         }
         public List<Owner> Owners { get; private set; } = new();
         public List<AppUser> AppUsers { get; private set; } = new();
-
         public void OnGet()
         {
             Owners = context.Owners.AsNoTracking().ToList();
             AppUsers= context.AppUsers.AsNoTracking().ToList();
         }
-
-
     }
 }

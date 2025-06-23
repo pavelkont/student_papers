@@ -28,7 +28,6 @@ namespace VKR_Kontorin.Pages
             context.Techs.Update(Tech!);
             await context.SaveChangesAsync();
             return Page();
-            //return RedirectToPage("ContactOwner");
         }
     }
 }

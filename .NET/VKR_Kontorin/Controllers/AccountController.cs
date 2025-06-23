@@ -3,7 +3,6 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using System.ComponentModel.DataAnnotations;
 using VKR_Kontorin.Models;
-using System.Security.Claims;
 
 
 namespace VKR_Kontorin.Controllers
@@ -42,7 +41,6 @@ namespace VKR_Kontorin.Controllers
                 if (appUser != null)
                 {
                     await signInManager.SignOutAsync();
-                    // not Changed:
                     Microsoft.AspNetCore.Identity.SignInResult result = await signInManager.PasswordSignInAsync(appUser, login.Password, login.Remember/*false*/, false);
                     if (result.Succeeded)
                         return Redirect(login.ReturnUrl ?? "/");
@@ -54,7 +52,6 @@ namespace VKR_Kontorin.Controllers
                 }
                 ModelState.AddModelError(nameof(login.Email), "Ошибка входа в систему: Неверный адрес электронной почты или пароль");
             }
-            //return RedirectToAction("/Index");
             return View(login);
         }
 
@@ -64,7 +61,6 @@ namespace VKR_Kontorin.Controllers
         {
             await signInManager.SignOutAsync();
             return RedirectToPage("/Index");
-            //return RedirectToAction("Index", "Home");
         }
 
         // Забыли пароль:
@@ -93,13 +89,9 @@ namespace VKR_Kontorin.Controllers
             EmailHelper emailHelper = new EmailHelper();
             bool emailResponse = emailHelper.SendEmailPasswordReset(user.Email, link);
 
-            if (emailResponse)
-                return RedirectToAction("ForgotPasswordConfirmation");
-            else
-            {
-                // log email failed 
-            }
-            //return View(email);
+            if (!emailResponse)
+                throw new Exception($"Не удалось отправить письмо для сброса пароля на {user.Email}");
+
             return RedirectToAction("ForgotPasswordConfirmation");
         }
 
@@ -142,7 +134,6 @@ namespace VKR_Kontorin.Controllers
         public IActionResult ResetPasswordConfirmation()
         {
             return View();
-            //return View("ResetPasswordConfirmation");
         }
     }
 }

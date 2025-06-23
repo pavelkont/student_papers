@@ -14,8 +14,6 @@ namespace VKR_Kontorin.Controllers
             roleManager = roleMgr;
             userManager = userMgr;
         }
-
-
         public ViewResult Index()
         {
             var roles = roleManager.Roles.ToList();
@@ -23,26 +21,18 @@ namespace VKR_Kontorin.Controllers
 
             foreach (var role in roles)
             {
-                // Получаем пользователей для каждой роли
+                // Получаем пользователей для каждой роли:
                 var usersInRole = userManager.GetUsersInRoleAsync(role.Name).Result;
 
-                // Заполняем нашу вспомогательную модель
+                // Заполняем нашу вспомогательную модель:
                 rolesWithUsers.Add(new RoleWithUsers
                 {
                     Role = role,
                     UserNames = usersInRole.Select(u => u.UserName).ToList()
                 });
             }
-
-            return View(rolesWithUsers); // Отправляем данные в представление
+            return View(rolesWithUsers); // отправляем данные в представление
         }
-
-
-
-
-
-        //public ViewResult Index() => View(roleManager.Roles);
-
         private void Errors(IdentityResult result)
         {
             foreach (IdentityError error in result.Errors)
@@ -79,25 +69,24 @@ namespace VKR_Kontorin.Controllers
                 ModelState.AddModelError("", "No role found");
             return View("Index", roleManager.Roles);
         }
-
         public async Task<IActionResult> Update(string id)
         {
-            // Получаем роль
+            // Получаем роль:
             Microsoft.AspNetCore.Identity.IdentityRole role = await roleManager.FindByIdAsync(id);
             if (role == null)
             {
                 return NotFound($"Role with ID {id} not found.");
             }
 
-            // Загружаем всех пользователей и их роли одним запросом
+            // Загружаем всех пользователей и их роли одним запросом:
             var users = userManager.Users.ToList();
             var userRoles = await userManager.GetUsersInRoleAsync(role.Name);
 
-            // Разделяем пользователей на членов роли и не членов
+            // Разделяем пользователей на членов роли и не членов:
             List<AppUser> members = userRoles.ToList();
             List<AppUser> nonMembers = users.Except(members).ToList();
 
-            // Возвращаем результат
+            // Возвращаем результат:
             return View(new RoleEdit
             {
                 Role = role,
@@ -105,8 +94,6 @@ namespace VKR_Kontorin.Controllers
                 NonMembers = nonMembers
             });
         }
-
-
         [HttpPost]
         public async Task<IActionResult> Update(RoleModification model)
         {
@@ -134,7 +121,6 @@ namespace VKR_Kontorin.Controllers
                     }
                 }
             }
-
             if (ModelState.IsValid)
                 return RedirectToAction(nameof(Index));
             else
@@ -142,22 +128,3 @@ namespace VKR_Kontorin.Controllers
         }
     }
 }
-
-/*        public async Task<IActionResult> Update(string id)
-        {
-            IdentityRole role = await roleManager.FindByIdAsync(id);
-            List<AppUser> members = new List<AppUser>();
-            List<AppUser> nonMembers = new List<AppUser>();
-
-            foreach (AppUser user in userManager.Users)
-            {
-                var list = await userManager.IsInRoleAsync(user, role.Name) ? members : nonMembers;
-                list.Add(user);
-            }
-            return View(new RoleEdit
-            {
-                Role = role,
-                Members = members,
-                NonMembers = nonMembers
-            });
-        }*/

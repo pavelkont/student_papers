@@ -1,10 +1,7 @@
-﻿using Microsoft.EntityFrameworkCore;
-using VKR_Kontorin.Models;
-using System.ComponentModel.DataAnnotations.Schema;
+﻿using System.ComponentModel.DataAnnotations.Schema;
 
 namespace VKR_Kontorin.Models
 {
-    //[Keyless]
     public class Tech
     {
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
@@ -21,5 +18,4 @@ namespace VKR_Kontorin.Models
         public string? Time { get; set; }
         public bool Block { get; set; }
     }
-
 }

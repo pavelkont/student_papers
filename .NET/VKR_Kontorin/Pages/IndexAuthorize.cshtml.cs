@@ -4,7 +4,6 @@ using VKR_Kontorin.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Authorization;
 
-
 namespace VKR_Kontorin.Pages
 {
     [Authorize]
@@ -23,8 +22,6 @@ namespace VKR_Kontorin.Pages
         public List<Owner> Owners { get; private set; } = new();
         public List<AppUser> AppUsers { get; private set; } = new();
         public List<Message> Messages { get; private set; } = new();
-
-
         public void OnGet()
         {
             Techs = context.Techs.AsNoTracking().ToList();
@@ -34,7 +31,6 @@ namespace VKR_Kontorin.Pages
         }
         [BindProperty]
         public Message Message { get; set; } = new();
-
         public async Task<IActionResult> OnPostAsync()
         {
             context.Messages.Add(Message);
