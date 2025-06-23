@@ -9,10 +9,7 @@
 ## Настройка подключения к базе данных
 
 ✔ Откройте файл `appsettings.json`  
-✔ Замените строку подключения в разделе `ConnectionStrings:DefaultConnection` на свои данные:
-    ✔ database_name  
-    ✔ your_user  
-    ✔ your_password  
+✔ Замените строку подключения в разделе `ConnectionStrings:DefaultConnection` на свои данные: database_name, your_user, your_password  
 
 ```json
 "ConnectionStrings": {
@@ -51,13 +48,13 @@ Now listening on: http://localhost:5058
 
 ## Данные
 
-Для примера проект заполнен данными
-Пароли для входа:
-✔ администратор  admin@mail.ru:Qqq!11
-✔ владелец       owner@mail.ru:Qqq!11
-✔ пользователь   user@mail.ru:Qqq!11
+Для примера проект заполнен данными  
+Пароли для входа:  
+✔ администратор  admin@mail.ru:Qqq!11  
+✔ владелец       owner@mail.ru:Qqq!11  
+✔ пользователь   user@mail.ru:Qqq!11  
 
 ## Руководство пользователя
 
-Руководство.pdf
+Инструкция по работе с программой.pdf
 
